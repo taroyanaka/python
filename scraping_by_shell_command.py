@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# Reference http://ni66ling.hatenadiary.jp/entry/20150110
 import subprocess
 import sys
 cmd = "wget https://www.amazon.co.jp/rss/new-releases/dvd/896246 ; cat ./896246 | grep -E -o '<span class=\"riRssContributor\">.+?<span class=\"byLinePipe\">'|awk '{gsub(/<[^<]*>/,\"\");print}'"
