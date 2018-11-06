@@ -1,6 +1,6 @@
 import subprocess
 import sys
-cmd = "wget https://www.amazon.co.jp/rss/new-releases/dvd/896246 -o;cat /tmp/www.amazon.co.jp/rss/new-releases/dvd/896246 | grep -E -o '<span class=\"riRssContributor\">.+?<span class=\"byLinePipe\">'|awk '{gsub(/<[^<]*>/,\"\");print}'"
+cmd = "wget https://www.amazon.co.jp/rss/new-releases/dvd/896246 -o;cat ./www.amazon.co.jp/rss/new-releases/dvd/896246 | grep -E -o '<span class=\"riRssContributor\">.+?<span class=\"byLinePipe\">'|awk '{gsub(/<[^<]*>/,\"\");print}'"
 proc = subprocess.Popen(
     cmd,
     shell  = True,                            #シェル経由($ sh -c "command")で実行。
