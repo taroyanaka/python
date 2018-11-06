@@ -1,11 +1,12 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import subprocess
 import sys
-cmd = "wget https://www.amazon.co.jp/rss/new-releases/dvd/896246 -o;cat ./www.amazon.co.jp/rss/new-releases/dvd/896246 | grep -E -o '<span class=\"riRssContributor\">.+?<span class=\"byLinePipe\">'|awk '{gsub(/<[^<]*>/,\"\");print}'"
-proc = subprocess.Popen(
-    cmd,
-    shell  = True,                            #シェル経由($ sh -c "command")で実行。
-    stdin  = subprocess.PIPE,                 #1
-    stdout = subprocess.PIPE,                 #2
-    stderr = subprocess.PIPE)                 #3
-stdout_data, stderr_data = proc.communicate() #処理実行を待つ(†1)
+cmd = "wget https://www.amazon.co.jp/rss/new-releases/dvd/896246 ; cat ./896246 | grep -E -o '<span class=\"riRssContributor\">.+?<span class=\"byLinePipe\">'|awk '{gsub(/<[^<]*>/,\"\");print}'"
+
+proc = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+(stdout_data, stderr_data) = proc.communicate()
+
 sys.stdout.buffer.write(stdout_data)
